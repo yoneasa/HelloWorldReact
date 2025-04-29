@@ -1,31 +1,18 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
-  const value = 'World';
-  const [count, setCount] = useState(0);
   const [data, setData] = useState('');
 
   useEffect(() => {
     (async function () {
-      const { text } = await( await fetch(`/api/message`)).json();
-      setData(text);
+      const response = await fetch(`/api/message`);
+      const data = await response.json(); // JSONとして取得
+      console.log(data.message); // "Hello, from the API!" が表示される
+      setData(data.message);
     })();
-  });
+  }, []);
 
-  const clickHandler = () => {
-    setCount((count) => count + 1);
-  }
-
-  return (
-    <>
-      <div>Hello {value}</div>
-      <button onClick={clickHandler}>CLICK</button>
-      <div>You clicked the button {count} times</div>
-      <p style={{ color: 'red' }}>これは赤い文字です！</p>
-      <div>DATA: {data}</div>
-    </>
-  );
+  return <div>{data}</div>;
 }
 
 export default App;

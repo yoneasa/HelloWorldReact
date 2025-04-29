@@ -14,6 +14,7 @@ function App() {
       <div>Hello {value}</div>
       <button onClick={clickHandler}>CLICK</button>
       <div>You clicked the button {count} times</div>
+      <p style={{ color: 'red' }}>これは赤い文字です！</p>
     </>
   );
 }
